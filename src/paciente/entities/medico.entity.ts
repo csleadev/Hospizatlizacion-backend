@@ -1,15 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 
-@Entity()
+@Entity('Medico')
 
 export class Medico {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     MedicoID: number
 
-    @Column()
+    @Column({ type: 'nvarchar', length: 50 })
     NombreMedico: string
 
-    @Column()
+    @Column({ type: 'int', nullable:false})
     EspecialidadID: number
 }

@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany} from "typeorm";
 import { Paciente } from './paciente.entity';
 
-@Entity()
+@Entity('Nacionalidad')
 
 export class Nacionalidad {
     
@@ -11,7 +11,7 @@ export class Nacionalidad {
     @Column()
     Nacionalidad: string
 
-    @OneToOne(() => Paciente, (paciente) => paciente.NacionaldadID)
-    pacientes: Paciente[];
+       @OneToMany(() => Paciente, (paciente) => paciente.gruposanguineo)
+       pacientes: Paciente[];
 
 }

@@ -9,11 +9,11 @@ export class PacienteService {
   }
 
   findAll() {
-    return `This action returns all paciente`;
+    return `Devuelve resultado desde la base de datos`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} paciente`;
+    return `BUscaste en la base de datos el paciente con el ID: #${id} paciente`;
   }
 
   update(id: number, updatePacienteDto: UpdatePacienteDto) {

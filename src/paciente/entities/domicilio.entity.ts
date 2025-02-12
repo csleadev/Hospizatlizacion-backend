@@ -1,29 +1,30 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm"
 import { Paciente } from './paciente.entity'
 
-@Entity()
+@Entity('Domilicio')
 
 export class Domicilio {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     DomicilioId: number
 
-    @Column()
+    @Column({ type: 'nvarchar', length: 100 })
     Direccion: string 
 
-    @Column()
+    @Column({ type: 'int', nullable: false })
     paisID: number
 
-    @Column()
+    @Column({ type: 'int', nullable: false })
     ProvinciaID: number
 
-    @Column()
+    @Column({ type: 'int', nullable: false })
     CiudadID: number
 
-    @Column()
+    @Column({ type: 'int', nullable: false })
     pacienteID: number
 
-    @OneToMany(() => Paciente, (paciente) => paciente.DomicilioID)
-    pacientes: Paciente[];
+    
+  @OneToMany(() => Paciente, (paciente) => paciente.domicilio)
+  pacientes: Paciente[];
 
 }

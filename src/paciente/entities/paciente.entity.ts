@@ -1,80 +1,106 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany} from "typeorm"
+import { Domicilio } from "./domicilio.entity"
+import { GrupoSanguineo } from "./gruposanguineo.entity"
+import { Nacionalidad } from "./nacionalidad"
+import { Factura } from "src/facturacion/entities/Factura.entity"
+import { Ars } from "src/facturacion/entities/Ars.entity"
 
-@Entity()
+@Entity('Paciente')
 
 export class Paciente {
     
     @PrimaryGeneratedColumn('increment')
-    pacienteID : number
+    PacienteID : number
 
-    @Column("text",{
+    @Column({type: 'nvarchar', length: 150,
         nullable: false
     })
     NombreCompleto: string 
 
 
-    @Column("text",{
+    @Column({type: 'nvarchar', length: 15,
         nullable: false
     })
     Identifcacion: string 
 
-    @Column("text",{
+    @Column({type: 'nvarchar', length: 20,
         nullable: true
     })
     nss: string 
 
-    @Column({
+    @Column({type: 'varchar', length: 20,
+        nullable: true
+    })
+    phone_number: string
+
+
+    @Column({type: 'int',
         nullable: false
     })
-    phone_number: number
+    Sexo : number 
 
-
-    @Column("text",{
-        nullable: false
-    })
-    sexo : string 
-
-    @Column({
+    @Column({ type: 'datetime' ,
         nullable: false
     })
     FechaNacimiento : Date
 
-    @Column({
+    @Column( {type: 'int' ,
         nullable: true
     })
     GrupoSanguineoID: number 
 
-    @Column({
+    @Column({type: 'int' ,
         nullable: false
     })
     NacionaldadID: number 
 
-    @Column({
+    @Column({ type: 'int' ,
         nullable: false
     })
     LugarNacimientoID: number 
 
-    @Column({
+    @Column({ type: 'int' ,
         nullable: false
     })
     ArsID: number 
 
-    @Column({
+    @Column({ type: 'decimal' ,
         nullable: true
     })
     Peso: number 
 
     @Column({
-        nullable: true
+        type: 'int' ,
+        nullable: false
     })
     EstadoCivilID: number
 
     @Column({
-        nullable: true
+        type: 'int' ,
+        nullable: false
     })
     DomicilioID: number
+
+
     
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @Column({ type: 'datetime', default: () => 'GETDATE()' })
     created_at: Date;
 
+
+    @ManyToOne(() => Domicilio, (dominicio) => dominicio.pacientes)
+    domicilio: Domicilio;
+  
+
+    @ManyToOne(() => GrupoSanguineo, (grupoSanguineo) => grupoSanguineo.pacientes)
+    gruposanguineo: GrupoSanguineo;
+
+    @ManyToOne(() => Nacionalidad, (nacionalidad) => nacionalidad.pacientes)
+    nacionalidad: Nacionalidad;
+    
+    @OneToMany(() => Factura, (factura) => factura.paciente)
+    facturas: Factura[];
+
+    @ManyToOne(() => Ars, (ars) => ars.patientes, { onDelete: 'SET NULL' })
+    Ars: Ars;
+    
 }

@@ -1,17 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany} from "typeorm";
 import { Paciente } from './paciente.entity';
 
-@Entity()
+@Entity('GrupoSanguineo')
 
 export class GrupoSanguineo {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     GrupoSanguineoID: number
 
-    @Column()
+    @Column({ type: 'nvarchar', length: 20 })
     GrupoSanguineo: string
 
-    @OneToOne(() => Paciente, (paciente) => paciente.GrupoSanguineoID)
-    pacientes: Paciente[];
+    
+      @OneToMany(() => Paciente, (paciente) => paciente.gruposanguineo)
+      pacientes: Paciente[];
 
 }
