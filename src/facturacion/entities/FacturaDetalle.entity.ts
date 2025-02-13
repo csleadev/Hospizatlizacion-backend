@@ -19,10 +19,14 @@ export class FacturacionDetalle {
         })
         Cantidad: number;
 
-        @Column({type: 'int',
-            nullable: false
-        })
-        Precio: number;
+        @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+        PrecioServicio: number;
+
+        @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+        MontoCobrado: number;
+
+        @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+        MontoAutorizado: number;
 
         @Column({type: 'int',
             nullable: true
@@ -30,11 +34,7 @@ export class FacturacionDetalle {
         Descuento: number;
     
         
-        @Column({type: 'int',
-            nullable: false
-        })
-        DiferenciaCobertura: number;
-
+    
         
         @ManyToOne(() => Factura, (factura) => factura.FacturaDetalle, { onDelete: 'CASCADE' })
         factura: Factura;

@@ -17,6 +17,18 @@ export class Factura {
     })
     NoAutorizacion: string;
 
+    @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+    TotalPrecioServicio: number;
+
+    @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+    TotalMontoCobrado: number;
+
+    @Column('decimal', { precision: 10, scale: 2,nullable:false }) 
+    TotalMontoAutorizado: number;
+
+    @Column('decimal', { precision: 10, scale: 2,nullable:true }) 
+    TotalDescuento: number;
+
     @ManyToOne(() => Paciente, (paciente) => paciente.facturas, { onDelete: 'CASCADE' })
     paciente: Paciente;
 
