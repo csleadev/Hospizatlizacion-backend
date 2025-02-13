@@ -34,12 +34,7 @@ export class FacturacionDetalle {
         Descuento: number;
     
         
-    
-        
         @ManyToOne(() => Factura, (factura) => factura.FacturaDetalle, { onDelete: 'CASCADE' })
         factura: Factura;
-
-
-
 
 }
