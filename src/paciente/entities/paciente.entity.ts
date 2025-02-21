@@ -21,7 +21,7 @@ export class Paciente {
     @Column({type: 'nvarchar', length: 15,
         nullable: false
     })
-    Identifcacion: string 
+    Identificacion: string 
 
     @Column({type: 'nvarchar', length: 20,
         nullable: true

@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PrecioServicio } from "./ServicioPrecios.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { PrecioServicio } from "./PrecioServicio.entity";
+import { GrupoServicio } from "./GrupoServicio.entity";
 
 
 @Entity('Servicio')
@@ -26,4 +27,7 @@ export class Servicio {
 
         @OneToMany(() => PrecioServicio, (servicioPrecio) => servicioPrecio.Servicio)
         ServicioPrecio: PrecioServicio[];
+
+        @ManyToOne(() => GrupoServicio, (grupoServicio) => grupoServicio.servicio)
+        GrupoServicio: GrupoServicio;
 }

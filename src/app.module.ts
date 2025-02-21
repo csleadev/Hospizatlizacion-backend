@@ -6,6 +6,7 @@ import { FacturacionModule } from './facturacion/facturacion.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AdmisionesModule } from './admisiones/admisiones.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           }),
           PacienteModule,
           FacturacionModule,
-          AuthModule
+          AuthModule,
+          AdmisionesModule
           ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,7 +8,7 @@ export class PrecioServicio {
 
     
     @PrimaryGeneratedColumn('increment')
-        PrecioServicioID: number;
+     PrecioServicioID: number;
 
      @ManyToOne(() => Servicio, (servicio) => servicio.ServicioPrecio, { onDelete: 'CASCADE' })
      Servicio: Servicio;

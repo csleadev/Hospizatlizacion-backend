@@ -32,6 +32,8 @@ export class Factura {
     @ManyToOne(() => Paciente, (paciente) => paciente.facturas, { onDelete: 'CASCADE' })
     paciente: Paciente;
 
+    Estado: string;
+
     @OneToMany(() => FacturacionDetalle, (facturaDetalle) => facturaDetalle.factura, { cascade: true })
     FacturaDetalle: FacturacionDetalle[];
 

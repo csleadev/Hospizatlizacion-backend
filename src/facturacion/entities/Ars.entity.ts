@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PrecioServicio } from "./ServicioPrecios.entity";
+import { PrecioServicio } from "./PrecioServicio.entity";
 import { Paciente } from "src/paciente/entities/paciente.entity";
 
 

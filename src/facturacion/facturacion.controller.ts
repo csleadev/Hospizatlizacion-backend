@@ -14,7 +14,7 @@ export class FacturacionController {
 
   @Get()
   findAll() {
-    return this.facturacionService.findAll();
+    return ;
   }
 
   @Get(':id')

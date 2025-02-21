@@ -11,7 +11,7 @@ export class Nacionalidad {
     @Column()
     Nacionalidad: string
 
-       @OneToMany(() => Paciente, (paciente) => paciente.gruposanguineo)
+       @OneToMany(() => Paciente, (paciente) => paciente.nacionalidad)
        pacientes: Paciente[];
 
 }

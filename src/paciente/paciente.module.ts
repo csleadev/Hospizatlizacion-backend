@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { PacienteService } from './paciente.service';
-import { PacienteController } from './paciente.controller';
+import { PacienteService } from './Services/paciente.service';
+import { PacienteController } from './Controllers/paciente.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Paciente } from './entities/paciente.entity';
 import { Domicilio } from './entities/domicilio.entity';
@@ -11,10 +11,12 @@ import { Factura } from 'src/facturacion/entities/Factura.entity';
 import { Servicio } from 'src/facturacion/entities/Servicio.entity';
 import { FacturacionDetalle } from 'src/facturacion/entities/FacturaDetalle.entity';
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([Paciente,Domicilio,GrupoSanguineo,Medico,Nacionalidad,Factura,FacturacionDetalle,Servicio])],
   controllers: [PacienteController],
-  providers: [PacienteService]
+  providers: [PacienteService ],
+  exports: [PacienteService]
  
 })
 export class PacienteModule {}

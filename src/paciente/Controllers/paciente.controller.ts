@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PacienteService } from './paciente.service';
-import { CreatePacienteDto } from './dto/create-paciente.dto';
-import { UpdatePacienteDto } from './dto/update-paciente.dto';
+import { PacienteService } from '../Services/paciente.service';
+import { CreatePacienteDto } from '../dto/create-paciente.dto';
+import { UpdatePacienteDto } from '../dto/update-paciente.dto';
 
 @Controller('paciente')
 export class PacienteController {
@@ -18,8 +18,8 @@ export class PacienteController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pacienteService.findOne(+id);
+  findOne(@Param('cedula') cedula: string) {
+    return this.pacienteService.findOne(cedula);
   }
 
   @Patch(':id')
