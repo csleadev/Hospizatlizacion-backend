@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PrecioServicio } from "./PrecioServicio.entity";
+import { PrecioServicio } from "../../facturacion/entities/PrecioServicio.entity";
 import { Paciente } from "src/paciente/entities/paciente.entity";
 
 
@@ -17,6 +17,6 @@ export class Ars {
         @OneToMany(() => PrecioServicio, (PrecioServicio) => PrecioServicio.Ars)
         PrecioServicio: PrecioServicio[];
 
-        @OneToMany(() => Paciente, (paciente) => paciente.ArsID)
+        @OneToMany(() => Paciente, (paciente) => paciente.Ars)
         patientes: Paciente[];
 }

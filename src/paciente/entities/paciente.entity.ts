@@ -1,9 +1,12 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany} from "typeorm"
-import { Domicilio } from "./domicilio.entity"
+
 import { GrupoSanguineo } from "./gruposanguineo.entity"
 import { Nacionalidad } from "./nacionalidad"
 import { Factura } from "src/facturacion/entities/Factura.entity"
-import { Ars } from "src/facturacion/entities/Ars.entity"
+import { Ars } from "src/paciente/entities/Ars.entity"
+import { EstadoCivil } from "./EstadoCivil"
+import { Sexo } from "./sexo"
+import { join } from "path"
 
 @Entity('Paciente')
 
@@ -31,18 +34,25 @@ export class Paciente {
     @Column({type: 'varchar', length: 20,
         nullable: true
     })
-    phone_number: string
+    PhoneNumber: string
 
 
     @Column({type: 'int',
         nullable: false
     })
-    Sexo : number 
+    SexoID : number 
 
     @Column({ type: 'datetime' ,
         nullable: false
     })
     FechaNacimiento : Date
+
+
+    @Column({type: 'nvarchar', length: 150,
+        nullable: true
+    })
+
+    Direccion: string
 
     @Column( {type: 'int' ,
         nullable: true
@@ -52,12 +62,8 @@ export class Paciente {
     @Column({type: 'int' ,
         nullable: false
     })
-    NacionaldadID: number 
+    NacionalidadID: number 
 
-    @Column({ type: 'int' ,
-        nullable: false
-    })
-    LugarNacimientoID: number 
 
     @Column({ type: 'int' ,
         nullable: false
@@ -75,32 +81,33 @@ export class Paciente {
     })
     EstadoCivilID: number
 
-    @Column({
-        type: 'int' ,
-        nullable: false
-    })
-    DomicilioID: number
+
 
 
     
     @Column({ type: 'datetime', default: () => 'GETDATE()' })
-    created_at: Date;
-
-
-    @ManyToOne(() => Domicilio, (dominicio) => dominicio.pacientes)
-    domicilio: Domicilio;
-  
+    created_at: Date;  
 
     @ManyToOne(() => GrupoSanguineo, (grupoSanguineo) => grupoSanguineo.pacientes)
+    @JoinColumn({ name: 'GrupoSanguineoID' })
     gruposanguineo: GrupoSanguineo;
+    
+    @ManyToOne(() => Sexo, (sexo) => sexo.pacientes)
+    @JoinColumn({ name: 'SexoID' })
+    sexo: Sexo;
 
     @ManyToOne(() => Nacionalidad, (nacionalidad) => nacionalidad.pacientes)
+    @JoinColumn({ name: 'NacionalidadID' })
     nacionalidad: Nacionalidad;
     
     @OneToMany(() => Factura, (factura) => factura.paciente)
     facturas: Factura[];
 
-    @ManyToOne(() => Ars, (ars) => ars.patientes, { onDelete: 'SET NULL' })
+    @ManyToOne(() => Ars, (ars) => ars.patientes)
+    @JoinColumn({ name: 'ArsID' })
     Ars: Ars;
     
+    @ManyToOne(() => EstadoCivil, (estadoCivil) => estadoCivil.pacientes)
+    @JoinColumn({ name: 'EstadoCivilID' })
+    EstadoCivil: EstadoCivil;
 }

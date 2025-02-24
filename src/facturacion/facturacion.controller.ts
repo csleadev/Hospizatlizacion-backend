@@ -22,6 +22,8 @@ export class FacturacionController {
     return this.facturacionService.findOne(+id);
   }
 
+  
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFacturacionDto: UpdateFacturacionDto) {
     return this.facturacionService.update(+id, updateFacturacionDto);

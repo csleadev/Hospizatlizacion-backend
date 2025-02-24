@@ -28,6 +28,23 @@ import { AdmisionesModule } from './admisiones/admisiones.module';
               server: 'SERVIDOR405-TIC', // Esto añade la propiedad "server" requerida por tedious
             },          
           }),
+          TypeOrmModule.forRoot({
+            name: 'padrondb',
+            type: 'mssql',
+            port: 1433,
+            username: 'userapp',
+            password: 'U$R159264873',
+            database: 'padron', // Segunda base de datos
+            options: {
+              encrypt: false,
+              trustServerCertificate: true,
+            },
+            synchronize: false, // ❌ No sincronizar ni crear entidades
+            autoLoadEntities: false,
+            extra: {
+              server: 'SERVIDOR405-TIC', // Esto añade la propiedad "server" requerida por tedious
+            },           // ❌ No cargar entidades automáticamente
+          }),
           PacienteModule,
           FacturacionModule,
           AuthModule,

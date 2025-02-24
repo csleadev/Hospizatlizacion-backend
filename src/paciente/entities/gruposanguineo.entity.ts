@@ -11,7 +11,6 @@ export class GrupoSanguineo {
     @Column({ type: 'nvarchar', length: 20 })
     GrupoSanguineo: string
 
-    
       @OneToMany(() => Paciente, (paciente) => paciente.gruposanguineo)
       pacientes: Paciente[];
 

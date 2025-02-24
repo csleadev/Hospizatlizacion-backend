@@ -9,6 +9,7 @@ export class PacienteController {
 
   @Post()
   create(@Body() createPacienteDto: CreatePacienteDto) {
+
     return this.pacienteService.create(createPacienteDto);
   }
 
@@ -16,6 +17,12 @@ export class PacienteController {
   findAll() {
     return this.pacienteService.findAll();
   }
+
+    @Get(':id/servicios')
+    getServicesWithPrices(@Param('id') id: string) {
+      return this.pacienteService.getServicesWithPrices(+id);
+    }
+  
 
   @Get(':id')
   findOne(@Param('cedula') cedula: string) {

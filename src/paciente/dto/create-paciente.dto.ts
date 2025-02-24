@@ -1,24 +1,29 @@
-import { IsDate, IsNumber, IsOptional, IsPhoneNumber, Length, MaxLength } from "class-validator"
+import { IsDate, IsDateString, IsNumber, IsOptional, IsPhoneNumber, IsString, Length, MaxLength, MinLength } from "class-validator"
 
 export class CreatePacienteDto {
 
+    @IsString()
+    @MinLength(5)
+    @MaxLength(150)
     NombreCompleto: string 
 
-    Identifcacion: string 
+    @IsString()
+    @MinLength(5)
+    Identificacion: string 
 
     @IsOptional()
     @MaxLength(20)
-    nss?: string 
+    Nss?: string 
 
-    @IsPhoneNumber()
+   
     @IsOptional()
-    phone_number?: string
+    PhoneNumber?: string
 
 
     @IsNumber()
-    SexoID : number 
+    SexoID: number 
 
-    @IsDate()
+    @IsDateString()
     FechaNacimiento:Date
 
     @IsNumber()
@@ -27,13 +32,13 @@ export class CreatePacienteDto {
     
     @IsNumber()
     @IsOptional()
-    NacionaldadID?:number
+    NacionalidadID?:number
 
     @IsNumber()
     @IsOptional()
     LugarNacimientoID?: number
     
-      @IsNumber()
+    @IsNumber()
     @IsOptional()
     EstadoCivilID: number
     
@@ -45,8 +50,8 @@ export class CreatePacienteDto {
     @IsOptional()
     Peso: number 
    
-    @IsNumber()
+    @IsString()
     @IsOptional()
-    DomicilioID: number
+    Direccion?: string
 
 }
